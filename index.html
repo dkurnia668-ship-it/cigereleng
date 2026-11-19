@@ -84,6 +84,15 @@
             opacity: 0.9;
         }
 
+        .jam-tanggal {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #2c5aa0;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
         main {
             max-width: 800px;
             margin: 30px auto;
@@ -179,6 +188,8 @@
         </div>
     </header>
 
+    <div class="jam-tanggal" id="tanggal-jam"></div>
+
     <main>
         <div class="card" id="tentang">
             <h2>Tentang Kami</h2>
@@ -228,6 +239,29 @@
         <p>&copy; 2026 Kelurahan Cigereleng — Pemerintah Kota Bandung</p>
         <p>Dikelola oleh: DADAN KURNIA, S.AP</p>
     </footer>
+
+    <script>
+        function tampilTanggalJam() {
+            const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+                          "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const sekarang = new Date();
+            const namaHari = hari[sekarang.getDay()];
+            const tgl = sekarang.getDate();
+            const namaBulan = bulan[sekarang.getMonth()];
+            const tahun = sekarang.getFullYear();
+            const jam = sekarang.getHours().toString().padStart(2, '0');
+            const menit = sekarang.getMinutes().toString().padStart(2, '0');
+            const detik = sekarang.getSeconds().toString().padStart(2, '0');
+            
+            document.getElementById("tanggal-jam").innerHTML = 
+                `${namaHari}, ${tgl} ${namaBulan} ${tahun} — Pukul ${jam}:${menit}:${detik} WIB`;
+        }
+        
+        tampilTanggalJam();
+        setInterval(tampilTanggalJam, 1000);
+    </script>
 
 </body>
 </html>
