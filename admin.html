@@ -470,3 +470,108 @@
             </div>
             <p style="margin-top: 20px; font-size: 14px; color: #666;">Terima kasih atas masukan Bapak/Ibu! 🙏</p>
         </div
+<div class="card" id="kontak">
+    <h2>📞 Informasi Kontak</h2>
+    <div class="info-row">
+        <span class="icon">📍</span>
+        <span>Alamat: Jl. Kembar Sari Indah No. 29, Cigereleng, Kec. Regol, Kota Bandung</span>
+    </div>
+    <div class="info-row">
+        <span class="icon">📞</span>
+        <span>Telepon: 0823-1596-3250</span>
+    </div>
+    <div class="info-row">
+        <span class="icon">✉️</span>
+        <span>Email: kelurahan.cigereleng@gmail.com</span>
+    </div>
+    <div class="info-row">
+        <span class="icon">🕐</span>
+        <span>Jam Kerja: Senin - Jumat, 08.00 - 15.00 WIB</span>
+    </div>
+</div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Kelurahan Cigereleng — Pemerintah Kota Bandung</p>
+    <p>Dikelola oleh: DADAN KURNIA, S.AP — Kasi Kesejahteraan Sosial</p>
+    <p style="margin-top:10px; font-size:13px;">
+        <a href="admin.html" style="color:#888; text-decoration:none;">🔐 Ranah Admin</a>
+    </p>
+</footer>
+
+<script>
+    // Tampilkan Tanggal & Waktu Sekarang
+    function tampilWaktu() {
+        const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+                      "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        
+        const sekarang = new Date();
+        const namaHari = hari[sekarang.getDay()];
+        const tgl = sekarang.getDate();
+        const namaBulan = bulan[sekarang.getMonth()];
+        const tahun = sekarang.getFullYear();
+        const jam = sekarang.getHours().toString().padStart(2, '0');
+        const menit = sekarang.getMinutes().toString().padStart(2, '0');
+        const detik = sekarang.getSeconds().toString().padStart(2, '0');
+        
+        document.getElementById("tanggal-jam").innerHTML = 
+            `${namaHari}, ${tgl} ${namaBulan} ${tahun} — Pukul ${jam}:${menit}:${detik} WIB`;
+    }
+    
+    tampilWaktu();
+    setInterval(tampilWaktu, 1000);
+
+    // Buka/Tutup Dasar Hukum
+    function toggleHukum(id) {
+        const el = document.getElementById(id);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Tampilkan Hanya Acara Hari Ini
+    function tampilkanAcaraHariIni() {
+        const hariIni = new Date();
+        const tglSekarang = hariIni.toISOString().split('T')[0];
+        const kotakAcara = document.getElementById('acara-hari-ini');
+        if (!kotakAcara) return;
+        
+        const daftarAcara = document.getElementById('daftar-acara');
+        const items = daftarAcara.querySelectorAll('.acara-item');
+        let adaAcara = false;
+
+        items.forEach(item => {
+            const tglAcara = item.getAttribute('data-tanggal');
+            if (tglAcara === tglSekarang) {
+                item.style.display = 'block';
+                adaAcara = true;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        kotakAcara.style.display = adaAcara ? 'block' : 'none';
+    }
+    
+    tampilkanAcaraHariIni();
+
+    // Penilaian Suka / Tidak Suka
+    let suka = localStorage.getItem('suka') ? parseInt(localStorage.getItem('suka')) : 0;
+    let tidakSuka = localStorage.getItem('tidakSuka') ? parseInt(localStorage.getItem('tidakSuka')) : 0;
+
+    document.getElementById('jumlah-suka').textContent = suka;
+    document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
+
+    function tambahSuka() {
+        suka++;
+        localStorage.setItem('suka', suka);
+        document.getElementById('jumlah-suka').textContent = suka;
+    }
+
+    function tambahTidakSuka() {
+        tidakSuka++;
+        localStorage.setItem('tidakSuka', tidakSuka);
+        document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
+    }
+</script>
+</body>
+</html>
