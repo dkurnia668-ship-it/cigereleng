@@ -519,30 +519,74 @@
             <p style="font-style:italic; color:#555;">Kami berkomitmen untuk menyelenggarakan pelayanan yang transparan, akuntabel, dan responsif terhadap kebutuhan masyarakat Kelurahan Cigereleng.</p>
         </div>
 
-        <div class="card" id="layanan">
+                <div class="card" id="layanan">
             <h2>📋 Informasi Program & Layanan</h2>
             <p style="text-align:center; margin-bottom:20px;">Berikut informasi dan layanan yang tersedia di Seksi Kesejahteraan Sosial Kelurahan Cigereleng:</p>
-            <ul class="daftar-layanan">
-                <li>📌 <strong>Informasi Program Kesejahteraan Sosial</strong>
-                    <span>Informasi yang dapat diperbarui oleh pengelola</span>
-                </li>
-                <li>🤝 <strong>Informasi Bantuan Sosial</strong>
-                    <span>Daftar dan persyaratan bantuan sosial yang sedang berjalan</span>
-                </li>
-                <li>📅 <strong>Jadwal Pelayanan dan Kegiatan</strong>
-                    <span>Jadwal kunjungan, rapat, dan kegiatan kelurahan</span>
-                </li>
-                <li>🏥 <strong>Informasi Posyandu & Kesehatan Masyarakat</strong>
-                    <span>Jadwal dan kegiatan Posyandu di wilayah Cigereleng</span>
-                </li>
-                <li>📢 <strong>Informasi Pengaduan Sosial</strong>
-                    <span>Cara menyampaikan aspirasi dan pengaduan warga</span>
-                </li>
-                <li>📝 <strong>Pengumuman & Persyaratan Pelayanan</strong>
-                    <span>Berkas yang harus dibawa dan prosedur pelayanan</span>
-                </li>
-            </ul>
+            
+            <!-- Tampilan Informasi -->
+            <div id="daftar-layanan">
+                <ul class="daftar-layanan">
+                    <li>📌 <strong>Informasi Program Kesejahteraan Sosial</strong>
+                        <span id="deskripsi-1">Informasi yang dapat diperbarui oleh pengelola</span>
+                    </li>
+                    <li>🤝 <strong>Informasi Bantuan Sosial</strong>
+                        <span id="deskripsi-2">Daftar dan persyaratan bantuan sosial yang sedang berjalan</span>
+                    </li>
+                    <li>📅 <strong>Jadwal Pelayanan dan Kegiatan</strong>
+                        <span id="deskripsi-3">Jadwal kunjungan, rapat, dan kegiatan kelurahan</span>
+                    </li>
+                    <li>🏥 <strong>Informasi Posyandu & Kesehatan Masyarakat</strong>
+                        <span id="deskripsi-4">Jadwal dan kegiatan Posyandu di wilayah Cigereleng</span>
+                    </li>
+                    <li>📢 <strong>Informasi Pengaduan Sosial</strong>
+                        <span id="deskripsi-5">Cara menyampaikan aspirasi dan pengaduan warga</span>
+                    </li>
+                    <li>📝 <strong>Pengumuman & Persyaratan Pelayanan</strong>
+                        <span id="deskripsi-6">Berkas yang harus dibawa dan prosedur pelayanan</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="text-align:center; margin-top:20px;">
+                <button class="tombol kecil" onclick="toggleEditLayanan()">✏️ Edit Informasi Layanan</button>
+            </div>
+
+            <!-- Form Edit — Tersembunyi -->
+            <div id="form-edit-layanan" class="bagian-admin sembunyi">
+                <h3 style="text-align:center; margin-bottom:15px;">✏️ Perbarui Informasi Layanan</h3>
+                
+                <div class="form-group">
+                    <label>📌 Informasi Program Kesejahteraan Sosial:</label>
+                    <input type="text" id="input-layanan-1">
+                </div>
+                <div class="form-group">
+                    <label>🤝 Informasi Bantuan Sosial:</label>
+                    <input type="text" id="input-layanan-2">
+                </div>
+                <div class="form-group">
+                    <label>📅 Jadwal Pelayanan dan Kegiatan:</label>
+                    <input type="text" id="input-layanan-3">
+                </div>
+                <div class="form-group">
+                    <label>🏥 Informasi Posyandu & Kesehatan Masyarakat:</label>
+                    <input type="text" id="input-layanan-4">
+                </div>
+                <div class="form-group">
+                    <label>📢 Informasi Pengaduan Sosial:</label>
+                    <input type="text" id="input-layanan-5">
+                </div>
+                <div class="form-group">
+                    <label>📝 Pengumuman & Persyaratan Pelayanan:</label>
+                    <input type="text" id="input-layanan-6">
+                </div>
+
+                <div style="text-align:center; margin-top:15px;">
+                    <button class="tombol hijau kecil" onclick="simpanLayanan()">✅ Simpan Perubahan</button>
+                    <button class="tombol kecil" style="background-color:#888;" onclick="tutupEditLayanan()">Tutup</button>
+                </div>
+            </div>
         </div>
+
 
         <div class="card pusat" id="formulir">
             <h2>✍️ Ajuan & Pengaduan Warga</h2>
