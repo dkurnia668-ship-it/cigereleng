@@ -454,14 +454,4 @@
             localStorage.setItem('tidakSuka', tidakSuka);
             localStorage.setItem('sudahPilih', 'tidakSuka');
             sudahPilih = 'tidakSuka';
-            document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
-            document.getElementById('btn-tidak-suka').style.opacity = '0.7';
-            alert('Terima kasih atas masukan Bapak/Ibu, kami akan berusaha lebih baik lagi 🙏');
-        }
-
-        if (sudahPilih === 'suka') {
-            document.getElementById('btn-suka').style.opacity = '0.7';
-        } else if (sudahPilih === 'tidakSuka') {
-            document.getElementById('btn-tidak-suka').style.opacity = '0.7';
-        }
-
+            document.getElementById('jumlah-t
