@@ -192,6 +192,10 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.12);
         }
 
+        .foto-item img.klik-ganti {
+            cursor: pointer;
+        }
+
         .keterangan-foto {
             margin-top: 10px;
             font-size: 14px;
@@ -303,18 +307,16 @@
                     <div class="keterangan-foto">Kegiatan Posyandu Cigereleng</div>
                 </div>
                 <div class="foto-item">
-                    <img src="PKK.jpeg" alt="Kegiatan PKK" loading="lazy">
-                    <div class="keterangan-foto">Kegiatan PKK Kelurahan</div>
+                    <img id="foto-pkk" src="PKK.jpeg" alt="Kegiatan PKK" class="klik-ganti" loading="lazy" onclick="gantiFotoPKK()">
+                    <div class="keterangan-foto">Kegiatan PKK (Klik foto untuk ganti)</div>
                 </div>
                 <div class="foto-item">
                     <img src="dashat.jpeg" alt="Monev Dashat" loading="lazy">
                     <div class="keterangan-foto">Monev Dashat</div>
                 </div>
-                <!-- Tambah foto baru di sini:
-                <div class="foto-item">
-                    <img src="nama-file-foto.jpg" alt="Judul Foto" loading="lazy">
-                    <div class="keterangan-foto">Nama Kegiatan</div>
-                </div>
+                <!-- Cara tambah foto baru PKK nanti:
+                1. Upload foto ke GitHub → contoh: PKK2.jpeg
+                2. Tambah namanya di daftarFotoPKK di bagian bawah kode
                 -->
             </div>
         </div>
@@ -377,6 +379,7 @@
         tampilTanggalJam();
         setInterval(tampilTanggalJam, 1000);
 
+        // Penilaian Pengunjung
         let suka = localStorage.getItem('suka') ? parseInt(localStorage.getItem('suka')) : 0;
         let tidakSuka = localStorage.getItem('tidakSuka') ? parseInt(localStorage.getItem('tidakSuka')) : 0;
         let sudahPilih = localStorage.getItem('sudahPilih');
@@ -416,6 +419,15 @@
             document.getElementById('btn-suka').style.opacity = '0.7';
         } else if (sudahPilih === 'tidakSuka') {
             document.getElementById('btn-tidak-suka').style.opacity = '0.7';
+        }
+
+        // Ganti Foto PKK saat diklik
+        let urutanFoto = 0;
+        const daftarFotoPKK = ['PKK.jpeg', 'PKK1.jpeg']; // Tambah foto baru di sini, contoh: 'PKK2.jpeg'
+        
+        function gantiFotoPKK() {
+            urutanFoto = (urutanFoto + 1) % daftarFotoPKK.length;
+            document.getElementById('foto-pkk').src = daftarFotoPKK[urutanFoto];
         }
     </script>
 
