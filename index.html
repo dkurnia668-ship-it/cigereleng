@@ -859,7 +859,7 @@
             tutupEditLayanan();
             alert('✅ Informasi layanan berhasil diperbarui!');
         }
-        // ✅ Pertama: tulis semua fungsi dulu
+      // ✅ Pertama: semua fungsi di atas
 function kosongkanFormLayanan() {
     if (confirm('Yakin ingin mengosongkan semua isian?')) {
         document.getElementById('input-layanan-1').value = '';
@@ -871,23 +871,23 @@ function kosongkanFormLayanan() {
     }
 }
 
-// ✅ Baru setelah itu jalankan perintah
+// === KATA SANDI UNTUK EDIT INFORMASI ===
+const KATA_SANDI_LAYANAN = 'cigereleng2026';
+
+function cekSandiLayanan() {
+    const sandi = prompt('Masukkan kata sandi untuk mengedit:');
+    if (sandi === KATA_SANDI_LAYANAN) {
+        muatDataLayanan();
+        document.getElementById('form-edit-layanan').classList.remove('sembunyi');
+    } else if (sandi !== null) {
+        alert('❌ Kata sandi salah! Silakan coba lagi.');
+    }
+}
+
+// ✅ Baru di bawah ini: jalankan perintah
 tampilkanSemuaAcara();
-                // === KATA SANDI UNTUK EDIT INFORMASI ===
-        const KATA_SANDI_LAYANAN = 'cigereleng2026';
-
-        function cekSandiLayanan() {
-            const sandi = prompt('Masukkan kata sandi untuk mengedit:');
-            if (sandi === KATA_SANDI_LAYANAN) {
-                muatDataLayanan();
-                document.getElementById('form-edit-layanan').classList.remove('sembunyi');
-            } else if (sandi !== null) {
-                alert('❌ Kata sandi salah! Silakan coba lagi.');
-            }
-        }
-
 muatDataLayanan();
 
-    </script> 
+</script>
 </body>
 </html>
