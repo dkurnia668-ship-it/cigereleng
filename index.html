@@ -132,11 +132,6 @@
             font-size: 14px;
         }
 
-        footer a {
-            color: #888;
-            text-decoration: none;
-        }
-
         .tombol {
             display: inline-block;
             background-color: #2c5aa0;
@@ -162,6 +157,20 @@
 
         .tombol.hijau:hover {
             background-color: #218838;
+        }
+
+        .tombol.kecil {
+            padding: 6px 15px;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .tombol.merah {
+            background-color: #dc3545;
+        }
+
+        .tombol.merah:hover {
+            background-color: #c82333;
         }
 
         .info-row {
@@ -315,16 +324,52 @@
         #acara-hari-ini {
             background: #fff9e6;
             border: 2px solid #f0c040;
-            display: none;
         }
 
         .acara-item {
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px dashed #f0c040;
+            position: relative;
         }
 
         .acara-item:last-child {
             border-bottom: none;
+        }
+
+        .acara-item .hapus {
+            position: absolute;
+            right: 0;
+            top: 10px;
+            font-size: 12px;
+            padding: 2px 8px;
+        }
+
+        .bagian-admin {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .sembunyi {
+            display: none !important;
         }
     </style>
 </head>
@@ -358,9 +403,40 @@
         <div class="card" id="acara-hari-ini">
             <h3 style="color:#b8860b; margin-bottom:15px; text-align:center;">📢 Acara Hari Ini</h3>
             <div id="daftar-acara">
-                <!-- Acara dari halaman Admin akan ditempel di sini -->
+                <!-- Acara akan muncul di sini -->
             </div>
-            <p style="text-align:center; font-size:13px; color:#888; margin-top:10px;">Acara otomatis hilang setelah hari berlalu</p>
+
+            <div style="text-align:center; margin-top:15px;">
+                <button class="tombol kecil" onclick="toggleFormAdmin()">🔐 Pengelola Acara</button>
+            </div>
+
+            <!-- Form Admin — Buka/Tutup -->
+            <div id="form-admin" class="bagian-admin sembunyi">
+                <div id="kotak-sandi">
+                    <div class="form-group">
+                        <label>Kata Sandi Admin:</label>
+                        <input type="password" id="input-sandi" placeholder="Masukkan kata sandi...">
+                    </div>
+                    <button class="tombol kecil" onclick="cekSandi()">Buka Formulir</button>
+                </div>
+
+                <div id="kotak-form-acara" class="sembunyi">
+                    <div class="form-group">
+                        <label>Tanggal Acara:</label>
+                        <input type="date" id="input-tanggal">
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Acara:</label>
+                        <input type="text" id="input-nama" placeholder="Contoh: Rapat Koordinasi">
+                    </div>
+                    <div class="form-group">
+                        <label>Jam & Tempat:</label>
+                        <input type="text" id="input-tempat" placeholder="Contoh: Pukul 09.00 — Balai RW 03">
+                    </div>
+                    <button class="tombol hijau kecil" onclick="tambahAcara()">✅ Simpan Acara</button>
+                    <button class="tombol kecil" style="background-color:#888; margin-left:5px;" onclick="tutupFormAdmin()">Tutup</button>
+                </div>
+            </div>
         </div>
 
         <div class="card" id="profil">
@@ -417,161 +493,249 @@
             </div>
 
             <br>
-            <p style="font-style:italic; color:#555;">Kami berkomitmen untuk menyelenggarakan pelayanan yang transparan, akuntabel, dan responsif terhadap kebutuhan masyarakat Kelurahan Cigereleng.</p>
+            <p style="font-style:italic; color:#555;">Kami berkomitmen untuk menyelenggarakan pelayanan yang transparan, akuntabel, dan responsif terhadap kebutuhan masyarakat Kelurahan Cigereleng.</p
         </div>
 
         <div class="card" id="layanan">
             <h2>📋 Layanan Kami</h2>
-            <p>✅ Pendataan Warga Kurang Mampu</p>
-            <p>✅ Bantuan Sosial</p>
-            <p>✅ Layanan Pengaduan Sosial</p>
-            <p>✅ Informasi Program Kesejahteraan</p>
-            <p>✅ Surat Pengantar & Permohonan</p>
+            <p style="text-align:center; margin-bottom:20px;">Berikut adalah layanan yang tersedia di Seksi Kesejahteraan Sosial Kelurahan Cigereleng:</p>
+            <ul style="list-style:none; padding-left:10px;">
+                <li style="margin:10px 0; padding:8px; background:#f9f9f9; border-radius:5px;">✅ Pendataan Warga Kurang Mampu</li>
+                <li style="margin:10px 0; padding:8px; background:#f9f9f9; border-radius:5px;">✅ Bantuan Sosial dan Bantuan Pemerintah</li>
+                <li style="margin:10px 0; padding:8px; background:#f9f9f9; border-radius:5px;">✅ Pengaduan dan Pelayanan Masyarakat</li>
+                <li style="margin:10px 0; padding:8px; background:#f9f9f9; border-radius:5px;">✅ Informasi Program Kesejahteraan Sosial</li>
+                <li style="margin:10px 0; padding:8px; background:#f9f9f9; border-radius:5px;">✅ Surat Pengantar dan Rekomendasi</li>
+            </ul>
         </div>
 
         <div class="card pusat" id="formulir">
-            <h2>✍️ Ajukan Permohonan / Lapor</h2>
-            <p>Silakan buka formulir di bawah ini untuk mengirimkan permohonan atau laporan.</p>
-            <p>Data yang Bapak/Ibu kirim akan langsung diterima oleh petugas kelurahan.</p>
-            <p><em>✅ Setelah selesai, akan muncul pesan konfirmasi. Terima kasih atas partisipasi Bapak/Ibu!</em></p>
-            <br>
+            <h2>✍️ Ajuan & Pengaduan Warga</h2>
+            <p>Silakan gunakan formulir berikut untuk mengirimkan permohonan, informasi, atau pengaduan:</p>
             <a href="https://forms.gle/X6HBawhxexjH4pTm9" target="_blank" class="tombol hijau">📝 Buka Formulir Warga</a>
         </div>
 
         <div class="card" id="galeri">
-            <h2>📸 Galeri Kegiatan Kesos</h2>
-            <p style="text-align:center; color:#666; margin-bottom:20px;">Kumpulan kegiatan Seksi Kesejahteraan Sosial Kelurahan Cigereleng</p>
+            <h2>📸 Galeri Kegiatan</h2>
+            <p style="text-align:center; color:#666; margin-bottom:20px;">Kumpulan dokumentasi kegiatan dan program kerja Kelurahan Cigereleng</p>
             <div class="galeri-foto">
                 <div class="foto-item">
-                    <img src="posyandu.jpeg" alt="Kegiatan Posyandu" loading="lazy">
-                    <div class="keterangan-foto">Kegiatan Posyandu Cigereleng</div>
+                    <img src="kegiatan1.jpg" alt="Kegiatan 1">
+                    <div class="keterangan-foto">Kegiatan Posyandu & Kesehatan</div>
                 </div>
                 <div class="foto-item">
-                    <img src="PKK.jpeg" alt="Kegiatan PKK" loading="lazy">
-                    <div class="keterangan-foto">Kegiatan PKK</div>
+                    <img src="kegiatan2.jpg" alt="Kegiatan 2">
+                    <div class="keterangan-foto">Penyaluran Bantuan Sosial</div>
                 </div>
                 <div class="foto-item">
-                    <img src="PKK1.jpeg" alt="Kegiatan PKK — Lanjutan" loading="lazy">
-                    <div class="keterangan-foto">Kegiatan PKK — Lanjutan</div>
+                    <img src="kegiatan3.jpg" alt="Kegiatan 3">
+                    <div class="keterangan-foto">Rapat Koordinasi Warga</div>
                 </div>
                 <div class="foto-item">
-                    <img src="dashat.jpeg" alt="Monev Dashat" loading="lazy">
-                    <div class="keterangan-foto">Monev Dashat</div>
+                    <img src="kegiatan4.jpg" alt="Kegiatan 4">
+                    <div class="keterangan-foto">Penyuluhan Kesejahteraan Sosial</div>
                 </div>
             </div>
         </div>
 
         <div class="card pusat" id="penilaian">
-            <h2>⭐ Penilaian Pengunjung</h2>
-            <p>Bagaimana menurut Bapak/Ibu tentang halaman ini?</p>
+            <h2>⭐ Penilaian Layanan</h2>
+            <p>Bagaimana pendapat Bapak/Ibu tentang pelayanan kami?</p>
             <div class="tombol-penilaian">
-                <button onclick="tambahSuka()" id="btn-suka">👍 Suka <span id="jumlah-suka">0</span></button>
-                <button onclick="tambahTidakSuka()" id="btn-tidak-suka">👎 Tidak Suka <span id="jumlah-tidak-suka">0</span></button>
+                <button onclick="tambahSuka()" id="btn-suka">👍 Puas <span id="jumlah-suka">0</span></button>
+                <button onclick="tambahTidakSuka()" id="btn-tidak-suka">👎 Belum Puas <span id="jumlah-tidak-suka">0</span></button>
             </div>
-            <p style="margin-top: 20px; font-size: 
-                <div class="card" id="kontak">
-    <h2>📞 Informasi Kontak</h2>
-    <div class="info-row">
-        <span class="icon">📍</span>
-        <span>Alamat: Jl. Kembar Sari Indah No. 29, Cigereleng, Kec. Regol, Kota Bandung</span>
-    </div>
-    <div class="info-row">
-        <span class="icon">📞</span>
-        <span>Telepon: 0823-1596-3250</span>
-    </div>
-    <div class="info-row">
-        <span class="icon">✉️</span>
-        <span>Email: kelurahan.cigereleng@gmail.com</span>
-    </div>
-    <div class="info-row">
-        <span class="icon">🕐</span>
-        <span>Jam Kerja: Senin - Jumat, 08.00 - 15.00 WIB</span>
-    </div>
-</div>
-</main>
+            <p style="margin-top:20px; font-size:14px; color:#666;">Terima kasih atas masukan Bapak/Ibu! 🙏</p>
+        </div>
 
-<footer>
-    <p>&copy; 2026 Kelurahan Cigereleng — Pemerintah Kota Bandung</p>
-    <p>Dikelola oleh: DADAN KURNIA, S.AP — Kasi Kesejahteraan Sosial</p>
-    <p style="margin-top:10px; font-size:13px;">
-        <a href="admin.html" style="color:#888; text-decoration:none;">🔐 Ranah Admin</a>
-    </p>
-</footer>
+        <div class="card" id="kontak">
+            <h2>📞 Informasi Kontak</h2>
+            <div class="info-row">
+                <span class="icon">📍</span>
+                <span>Alamat: Jl. Kembar Sari No. 29, Kelurahan Cigereleng, Kecamatan Regol, Kota Bandung, 40253</span>
+            </div>
+            <div class="info-row">
+                <span class="icon">📞</span>
+                <span>Telepon: (022) 423-xxxx</span>
+            </div>
+            <div class="info-row">
+                <span class="icon">📱</span>
+                <span>HP/WA: 0823-1596-3250</span>
+            </div>
+            <div class="info-row">
+                <span class="icon">✉️</span>
+                <span>Email: kelurahan.cigereleng@gmail.com</span>
+            </div>
+            <div class="info-row">
+                <span class="icon">🕐</span>
+                <span>Jam Kerja: Senin — Jumat, 08.00 — 15.00 WIB</span>
+            </div>
+        </div>
+    </main>
 
-<script>
-    // Tampilkan Tanggal & Waktu Sekarang
-    function tampilWaktu() {
-        const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-        const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
-                      "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    <footer>
+        <p>&copy; 2026 Kelurahan Cigereleng — Pemerintah Kota Bandung</p>
+        <p>Dikelola oleh: DADAN KURNIA, S.AP — Kasi Kesejahteraan Sosial</p>
+    </footer>
+
+    <script>
+        // === KATA SANDI ADMIN ===
+        const KATA_SANDI = 'cigereleng2026';
+
+        // === WAKTU & TANGGAL ===
+        function tampilWaktu() {
+            const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+                          "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const sekarang = new Date();
+            const namaHari = hari[sekarang.getDay()];
+            const tgl = sekarang.getDate();
+            const namaBulan = bulan[sekarang.getMonth()];
+            const tahun = sekarang.getFullYear();
+            const jam = sekarang.getHours().toString().padStart(2, '0');
+            const menit = sekarang.getMinutes().toString().padStart(2, '0');
+            const detik = sekarang.getSeconds().toString().padStart(2, '0');
+            
+            document.getElementById("tanggal-jam").innerHTML = 
+                `${namaHari}, ${tgl} ${namaBulan} ${tahun} — Pukul ${jam}:${menit}:${detik} WIB`;
+        }
         
-        const sekarang = new Date();
-        const namaHari = hari[sekarang.getDay()];
-        const tgl = sekarang.getDate();
-        const namaBulan = bulan[sekarang.getMonth()];
-        const tahun = sekarang.getFullYear();
-        const jam = sekarang.getHours().toString().padStart(2, '0');
-        const menit = sekarang.getMinutes().toString().padStart(2, '0');
-        const detik = sekarang.getSeconds().toString().padStart(2, '0');
-        
-        document.getElementById("tanggal-jam").innerHTML = 
-            `${namaHari}, ${tgl} ${namaBulan} ${tahun} — Pukul ${jam}:${menit}:${detik} WIB`;
-    }
-    
-    tampilWaktu();
-    setInterval(tampilWaktu, 1000);
+        tampilWaktu();
+        setInterval(tampilWaktu, 1000);
 
-    // Buka/Tutup Dasar Hukum
-    function toggleHukum(id) {
-        const el = document.getElementById(id);
-        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-    }
+        // === BUKA/TUTUP FORM ADMIN ===
+        function toggleFormAdmin() {
+            const form = document.getElementById('form-admin');
+            form.classList.toggle('sembunyi');
+        }
 
-    // Tampilkan Hanya Acara Hari Ini
-    function tampilkanAcaraHariIni() {
-        const hariIni = new Date();
-        const tglSekarang = hariIni.toISOString().split('T')[0];
-        const kotakAcara = document.getElementById('acara-hari-ini');
-        if (!kotakAcara) return;
-        
-        const daftarAcara = document.getElementById('daftar-acara');
-        const items = daftarAcara.querySelectorAll('.acara-item');
-        let adaAcara = false;
+        function tutupFormAdmin() {
+            document.getElementById('form-admin').classList.add('sembunyi');
+            document.getElementById('kotak-sandi').classList.remove('sembunyi');
+            document.getElementById('kotak-form-acara').classList.add('sembunyi');
+            document.getElementById('input-sandi').value = '';
+        }
 
-        items.forEach(item => {
-            const tglAcara = item.getAttribute('data-tanggal');
-            if (tglAcara === tglSekarang) {
-                item.style.display = 'block';
-                adaAcara = true;
+        // === CEK KATA SANDI ===
+        function cekSandi() {
+            const input = document.getElementById('input-sandi').value;
+            if (input === KATA_SANDI) {
+                document.getElementById('kotak-sandi').classList.add('sembunyi');
+                document.getElementById('kotak-form-acara').classList.remove('sembunyi');
             } else {
-                item.style.display = 'none';
+                alert('Kata sandi salah! Coba lagi ya.');
             }
-        });
+        }
 
-        kotakAcara.style.display = adaAcara ? 'block' : 'none';
-    }
-    
-    tampilkanAcaraHariIni();
+        // === TAMBAH & SIMPAN ACARA ===
+        let daftarAcara = JSON.parse(localStorage.getItem('daftarAcara')) || [];
 
-    // Penilaian Suka / Tidak Suka
-    let suka = localStorage.getItem('suka') ? parseInt(localStorage.getItem('suka')) : 0;
-    let tidakSuka = localStorage.getItem('tidakSuka') ? parseInt(localStorage.getItem('tidakSuka')) : 0;
+        function simpanKePenyimpanan() {
+            localStorage.setItem('daftarAcara', JSON.stringify(daftarAcara));
+        }
 
-    document.getElementById('jumlah-suka').textContent = suka;
-    document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
+        function tampilkanSemuaAcara() {
+            const wadah = document.getElementById('daftar-acara');
+            wadah.innerHTML = '';
+            
+            if (daftarAcara.length === 0) {
+                wadah.innerHTML = '<p style="color:#888; text-align:center; padding:10px;">Belum ada acara untuk hari ini.</p>';
+                return;
+            }
 
-    function tambahSuka() {
-        suka++;
-        localStorage.setItem('suka', suka);
+            const hariIni = new Date().toISOString().split('T')[0];
+            let adaYangDitampilkan = false;
+
+            daftarAcara.forEach((acara, indeks) => {
+                if (acara.tanggal === hariIni) {
+                    const elemen = document.createElement('div');
+                    elemen.className = 'acara-item';
+                    elemen.innerHTML = `
+                        <strong>🔹 ${acara.namaHari}, ${acara.tanggalAngka} ${acara.namaBulan} ${acara.tahun}</strong><br>
+                        ${acara.namaAcara} — ${acara.tempat}
+                        <button class="tombol merah hapus" onclick="hapusAcara(${indeks})">Hapus</button>
+                    `;
+                    wadah.appendChild(elemen);
+                    adaYangDitampilkan = true;
+                }
+            });
+
+            if (!adaYangDitampilkan) {
+                wadah.innerHTML = '<p style="color:#888; text-align:center; padding:10px;">Belum ada acara untuk hari ini.</p>';
+            }
+        }
+
+        function tambahAcara() {
+            const tanggal = document.getElementById('input-tanggal').value;
+            const namaAcara = document.getElementById('input-nama').value;
+            const tempat = document.getElementById('input-tempat').value;
+
+            if (!tanggal || !namaAcara || !tempat) {
+                alert('Harap lengkapi semua data!');
+                return;
+            }
+
+            const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+                          "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const tglObj = new Date(tanggal + 'T00:00:00');
+            
+            daftarAcara.push({
+                tanggal: tanggal,
+                namaHari: hari[tglObj.getDay()],
+                tanggalAngka: tglObj.getDate(),
+                namaBulan: bulan[tglObj.getMonth()],
+                tahun: tglObj.getFullYear(),
+                namaAcara: namaAcara,
+                tempat: tempat
+            });
+
+            simpanKePenyimpanan();
+            tampilkanSemuaAcara();
+            
+            document.getElementById('input-tanggal').value = '';
+            document.getElementById('input-nama').value = '';
+            document.getElementById('input-tempat').value = '';
+            
+            alert('✅ Acara berhasil ditambahkan!');
+        }
+
+        function hapusAcara(indeks) {
+            if (confirm('Yakin ingin menghapus acara ini?')) {
+                daftarAcara.splice(indeks, 1);
+                simpanKePenyimpanan();
+                tampilkanSemuaAcara();
+            }
+        }
+
+        // === BUKA/TUTUP INFORMASI HUKUM ===
+        function toggleHukum(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // === PENILAIAN ===
+        let suka = parseInt(localStorage.getItem('suka')) || 0;
+        let tidakSuka = parseInt(localStorage.getItem('tidakSuka')) || 0;
+
         document.getElementById('jumlah-suka').textContent = suka;
-    }
-
-    function tambahTidakSuka() {
-        tidakSuka++;
-        localStorage.setItem('tidakSuka', tidakSuka);
         document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
-    }
-</script>
+
+        function tambahSuka() {
+            suka++;
+            localStorage.setItem('suka', suka);
+            document.getElementById('jumlah-suka').textContent = suka;
+        }
+
+        function tambahTidakSuka() {
+            tidakSuka++;
+            localStorage.setItem('tidakSuka', tidakSuka);
+            document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
+        }
+
+        // === MULAI ===
+        tampilkanSemuaAcara();
+    </script>
 </body>
 </html>
-
