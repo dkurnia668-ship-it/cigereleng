@@ -132,6 +132,11 @@
             font-size: 14px;
         }
 
+        footer a {
+            color: #888;
+            text-decoration: none;
+        }
+
         .tombol {
             display: inline-block;
             background-color: #2c5aa0;
@@ -179,7 +184,7 @@
         .galeri-foto {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 20px;
             justify-content: center;
             margin-top: 20px;
         }
@@ -200,7 +205,6 @@
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-            cursor: pointer;
         }
 
         .keterangan-foto {
@@ -257,7 +261,7 @@
         .profil-pimpinan {
             display: flex;
             flex-wrap: wrap;
-            gap: 80px;
+            gap: 40px;
             justify-content: center;
         }
 
@@ -307,6 +311,21 @@
             font-size: 14px;
             line-height: 1.7;
         }
+
+        #acara-hari-ini {
+            background: #fff9e6;
+            border: 2px solid #f0c040;
+            display: none;
+        }
+
+        .acara-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #f0c040;
+        }
+
+        .acara-item:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
@@ -336,20 +355,26 @@
     <div class="jam-tanggal" id="tanggal-jam"></div>
 
     <main>
+        <div class="card" id="acara-hari-ini">
+            <h3 style="color:#b8860b; margin-bottom:15px; text-align:center;">📢 Acara Hari Ini</h3>
+            <div id="daftar-acara">
+                <!-- Acara dari halaman Admin akan ditempel di sini -->
+            </div>
+            <p style="text-align:center; font-size:13px; color:#888; margin-top:10px;">Acara otomatis hilang setelah hari berlalu</p>
+        </div>
+
         <div class="card" id="profil">
             <h2>👤 Lurah & Seksi Kesejahteraan Sosial</h2>
             <div class="profil-pimpinan">
                 <div class="profil-item">
-                      <p>Lurah Cigereleng</p>
                     <img src="foto-lurah.jpeg" alt="Foto Lurah">
                     <h3>Dees Budi Angga Sumadiharja, S.IP.</h3>
-                   
+                    <p>Lurah Cigereleng</p>
                 </div>
                 <div class="profil-item">
                     <img src="foto-saya.jpeg" alt="Foto Saya">
-                     <p>Kasi Kesejahteraan Sosial</p>
                     <h3>Dadan Kurnia, S.AP</h3>
-               
+                    <p>Kasi Kesejahteraan Sosial</p>
                 </div>
             </div>
         </div>
@@ -414,16 +439,20 @@
         </div>
 
         <div class="card" id="galeri">
-            <h2>📸 Galeri Kegiatan</h2>
-            <p style="text-align:center; color:#666; margin-bottom:15px;">Kumpulan kegiatan warga Kelurahan Cigereleng</p>
+            <h2>📸 Galeri Kegiatan Kesos</h2>
+            <p style="text-align:center; color:#666; margin-bottom:20px;">Kumpulan kegiatan Seksi Kesejahteraan Sosial Kelurahan Cigereleng</p>
             <div class="galeri-foto">
                 <div class="foto-item">
                     <img src="posyandu.jpeg" alt="Kegiatan Posyandu" loading="lazy">
                     <div class="keterangan-foto">Kegiatan Posyandu Cigereleng</div>
                 </div>
                 <div class="foto-item">
-                    <img id="foto-pkk" src="PKK.jpeg" alt="Kegiatan PKK" loading="lazy" onclick="gantiFotoPKK()">
+                    <img src="PKK.jpeg" alt="Kegiatan PKK" loading="lazy">
                     <div class="keterangan-foto">Kegiatan PKK</div>
+                </div>
+                <div class="foto-item">
+                    <img src="PKK1.jpeg" alt="Kegiatan PKK — Lanjutan" loading="lazy">
+                    <div class="keterangan-foto">Kegiatan PKK — Lanjutan</div>
                 </div>
                 <div class="foto-item">
                     <img src="dashat.jpeg" alt="Monev Dashat" loading="lazy">
@@ -439,43 +468,4 @@
                 <button onclick="tambahSuka()" id="btn-suka">👍 Suka <span id="jumlah-suka">0</span></button>
                 <button onclick="tambahTidakSuka()" id="btn-tidak-suka">👎 Tidak Suka <span id="jumlah-tidak-suka">0</span></button>
             </div>
-            <p style="margin-top: 20px; font-size: 14px; color: #666;">Terima kasih atas masukan Bapak/Ibu! 🙏</p>
-        </div>
-
-        <div class="card" id="kontak">
-            <h2>📞 Informasi Kontak</h2>
-            <div class="info-row">
-                <span class="icon">📍</span>
-                <span>Alamat: Jl. Kembar Sari Indah No. 29, Cigereleng, Kec. Regol, Kota Bandung</span>
-            </div>
-            <div class="info-row">
-                <span class="icon">📞</span>
-                <span>Telepon: 082315963250</span>
-            </div>
-            <div class="info-row">
-                <span class="icon">✉️</span>
-                <span>Email: kelurahan.cigereleng01@gmail.com</span>
-            </div>
-            <div class="info-row">
-                <span class="icon">🕐</span>
-                <span>Jam Kerja: Senin - Jumat, 08.00 - 15.00 WIB</span>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-    <p>&copy; 2026 Kelurahan Cigereleng — Pemerintah Kota Bandung</p>
-    <p>Dikelola oleh: DADAN KURNIA, S.AP</p>
-    <p style="margin-top:10px; font-size:13px;">
-        <a href="admin.html" style="color:#888; text-decoration:none;">🔐 Ranah Admin</a>
-    </p>
-</footer>
-
-
-    <script>
-        function tampilTanggalJam() {
-            const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-            const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
-                          "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-            
-           
+            <p style="margin-top: 20px; font-size: 
