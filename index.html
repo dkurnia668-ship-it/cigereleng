@@ -192,6 +192,48 @@
             font-size: 14px;
             color: #444;
         }
+
+        .tombol-penilaian {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .tombol-penilaian button {
+            padding: 10px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #btn-suka {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #btn-suka:hover {
+            background-color: #218838;
+        }
+
+        #btn-tidak-suka {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #btn-tidak-suka:hover {
+            background-color: #c82333;
+        }
+
+        .tombol-penilaian button span {
+            background-color: rgba(255,255,255,0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body>
@@ -203,6 +245,7 @@
             <li><a href="#layanan">📋 Layanan</a></li>
             <li><a href="#formulir">✍️ Ajuan Warga</a></li>
             <li><a href="#galeri">📸 Galeri</a></li>
+            <li><a href="#penilaian">⭐ Penilaian</a></li>
             <li><a href="#kontak">📞 Kontak</a></li>
         </ul>
     </nav>
@@ -243,7 +286,7 @@
             <a href="https://forms.gle/X6HBawhxexjH4pTm9" target="_blank" class="tombol hijau">📝 Buka Formulir Warga</a>
         </div>
 
-                <div class="card" id="galeri">
+        <div class="card" id="galeri">
             <h2>📸 Galeri Kegiatan</h2>
             <div class="galeri-foto">
                 <div class="foto-item">
@@ -259,6 +302,16 @@
                     <p>Monev Dashat</p>
                 </div>
             </div>
+        </div>
+
+        <div class="card pusat" id="penilaian">
+            <h2>⭐ Penilaian Pengunjung</h2>
+            <p>Bagaimana menurut Bapak/Ibu tentang halaman ini?</p>
+            <div class="tombol-penilaian">
+                <button onclick="tambahSuka()" id="btn-suka">👍 Suka <span id="jumlah-suka">0</span></button>
+                <button onclick="tambahTidakSuka()" id="btn-tidak-suka">👎 Tidak Suka <span id="jumlah-tidak-suka">0</span></button>
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">Terima kasih atas masukan Bapak/Ibu! 🙏</p>
         </div>
 
         <div class="card" id="kontak">
@@ -308,6 +361,47 @@
         
         tampilTanggalJam();
         setInterval(tampilTanggalJam, 1000);
+
+        let suka = localStorage.getItem('suka') ? parseInt(localStorage.getItem('suka')) : 0;
+        let tidakSuka = localStorage.getItem('tidakSuka') ? parseInt(localStorage.getItem('tidakSuka')) : 0;
+        let sudahPilih = localStorage.getItem('sudahPilih');
+
+        document.getElementById('jumlah-suka').textContent = suka;
+        document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
+
+        function tambahSuka() {
+            if (sudahPilih) {
+                alert('Terima kasih! Bapak/Ibu sudah memberikan penilaian ya 😊');
+                return;
+            }
+            suka++;
+            localStorage.setItem('suka', suka);
+            localStorage.setItem('sudahPilih', 'suka');
+            sudahPilih = 'suka';
+            document.getElementById('jumlah-suka').textContent = suka;
+            document.getElementById('btn-suka').style.opacity = '0.7';
+            alert('Terima kasih atas penilaian positif Bapak/Ibu! ❤️');
+        }
+
+        function tambahTidakSuka() {
+            if (sudahPilih) {
+                alert('Terima kasih! Bapak/Ibu sudah memberikan penilaian ya 😊');
+                return;
+            }
+            tidakSuka++;
+            localStorage.setItem('tidakSuka', tidakSuka);
+            localStorage.setItem('sudahPilih', 'tidakSuka');
+            sudahPilih = 'tidakSuka';
+            document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
+            document.getElementById('btn-tidak-suka').style.opacity = '0.7';
+            alert('Terima kasih atas masukan Bapak/Ibu, kami akan berusaha lebih baik lagi 🙏');
+        }
+
+        if (sudahPilih === 'suka') {
+            document.getElementById('btn-suka').style.opacity = '0.7';
+        } else if (sudahPilih === 'tidakSuka') {
+            document.getElementById('btn-tidak-suka').style.opacity = '0.7';
+        }
     </script>
 
 </body>
