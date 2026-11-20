@@ -581,9 +581,10 @@
                 </div>
 
                 <div style="text-align:center; margin-top:15px;">
-                    <button class="tombol hijau kecil" onclick="simpanLayanan()">✅ Simpan Perubahan</button>
-                    <button class="tombol kecil" style="background-color:#888;" onclick="tutupEditLayanan()">Tutup</button>
-                </div>
+    <button class="tombol hijau kecil" onclick="simpanLayanan()">✅ Simpan Perubahan</button>
+    <button class="tombol kecil" style="background-color:#f0ad4e;" onclick="kosongkanFormLayanan()">🗑️ Kosongkan</button>
+    <button class="tombol kecil" style="background-color:#888;" onclick="tutupEditLayanan()">Tutup</button>
+</div>
             </div>
         </div>
 
@@ -868,8 +869,22 @@
             tutupEditLayanan();
             alert('✅ Informasi layanan berhasil diperbarui!');
         }
+        // ✅ Pertama: tulis semua fungsi dulu
+function kosongkanFormLayanan() {
+    if (confirm('Yakin ingin mengosongkan semua isian?')) {
+        document.getElementById('input-layanan-1').value = '';
+        document.getElementById('input-layanan-2').value = '';
+        document.getElementById('input-layanan-3').value = '';
+        document.getElementById('input-layanan-4').value = '';
+        document.getElementById('input-layanan-5').value = '';
+        document.getElementById('input-layanan-6').value = '';
+    }
+}
+
+// ✅ Baru setelah itu jalankan perintah
 tampilkanSemuaAcara();
 muatDataLayanan();
+
     </script> 
 </body>
 </html>
