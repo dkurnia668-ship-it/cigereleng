@@ -425,15 +425,12 @@
     <main>
         <div class="card" id="acara-hari-ini">
             <h3 style="color:#b8860b; margin-bottom:15px; text-align:center;">📢 Acara Hari Ini</h3>
-            <div id="daftar-acara">
-                <!-- Acara akan muncul di sini -->
-            </div>
+            <div id="daftar-acara"></div>
 
             <div style="text-align:center; margin-top:15px;">
                 <button class="tombol kecil" onclick="toggleFormAdmin()">🔐 Pengelola Acara</button>
             </div>
 
-            <!-- Form Admin — Buka/Tutup -->
             <div id="form-admin" class="bagian-admin sembunyi">
                 <div id="kotak-sandi">
                     <div class="form-group">
@@ -516,14 +513,14 @@
             </div>
 
             <br>
-            <p style="font-style:italic; color:#555;">Kami berkomitmen untuk menyelenggarakan pelayanan yang transparan, akuntabel, dan responsif terhadap kebutuhan masyarakat Kelurahan Cigereleng.</p>
+            <p style="font-style:italic; color:#555;">Kami berkomitmen untuk menyelenggarakan pelayanan yang
+                 transparan, akuntabel, dan responsif terhadap kebutuhan masyarakat Kelurahan Cigereleng.</p>
         </div>
 
-                <div class="card" id="layanan">
+        <div class="card" id="layanan">
             <h2>📋 Informasi Program & Layanan</h2>
             <p style="text-align:center; margin-bottom:20px;">Berikut informasi dan layanan yang tersedia di Seksi Kesejahteraan Sosial Kelurahan Cigereleng:</p>
             
-            <!-- Tampilan Informasi -->
             <div id="daftar-layanan">
                 <ul class="daftar-layanan">
                     <li>📌 <strong>Informasi Program Kesejahteraan Sosial</strong>
@@ -551,7 +548,6 @@
                 <button class="tombol kecil" onclick="cekSandiLayanan()">✏️ Edit Informasi Layanan</button>
             </div>
 
-            <!-- Form Edit — Tersembunyi -->
             <div id="form-edit-layanan" class="bagian-admin sembunyi">
                 <h3 style="text-align:center; margin-bottom:15px;">✏️ Perbarui Informasi Layanan</h3>
                 
@@ -581,13 +577,12 @@
                 </div>
 
                 <div style="text-align:center; margin-top:15px;">
-    <button class="tombol hijau kecil" onclick="simpanLayanan()">✅ Simpan Perubahan</button>
-    <button class="tombol kecil" style="background-color:#f0ad4e;" onclick="kosongkanFormLayanan()">🗑️ Kosongkan</button>
-    <button class="tombol kecil" style="background-color:#888;" onclick="tutupEditLayanan()">Tutup</button>
-</div>
+                    <button class="tombol hijau kecil" onclick="simpanLayanan()">✅ Simpan Perubahan</button>
+                    <button class="tombol kecil" style="background-color:#f0ad4e;" onclick="kosongkanFormLayanan()">🗑️ Kosongkan</button>
+                    <button class="tombol kecil" style="background-color:#888;" onclick="tutupEditLayanan()">Tutup</button>
+                </div>
             </div>
         </div>
-
 
         <div class="card pusat" id="formulir">
             <h2>✍️ Ajuan & Pengaduan Warga</h2>
@@ -598,25 +593,25 @@
         <div class="card" id="galeri">
             <h2>📸 Galeri Kegiatan</h2>
             <p style="text-align:center; color:#666; margin-bottom:20px;">Kumpulan dokumentasi kegiatan dan program kerja Kelurahan Cigereleng</p>
-           <div class="galeri-foto">
-    <div class="foto-item">
-        <img src="posyandu.jpeg" alt="Kegiatan Posyandu">
-        <div class="keterangan-foto">Kegiatan Posyandu & Kesehatan</div>
-    </div>
-    <div class="foto-item">
-        <img src="dashat.jpeg" alt="Penyaluran Bantuan">
-        <div class="keterangan-foto">Penyaluran Bantuan Sosial</div>
-    </div>
-    <div class="foto-item">
-        <img src="PKK.jpeg" alt="Kegiatan PKK">
-        <div class="keterangan-foto">Kegiatan PKK & Pemberdayaan Warga</div>
-    </div>
-    <div class="foto-item">
-        <img src="PKK1.jpeg" alt="Kegiatan PKK">
-        <div class="keterangan-foto">Kegiatan PKK — Kader & Masyarakat</div>
-    </div>
-</div>
-
+            <div class="galeri-foto">
+                <div class="foto-item">
+                    <img src="posyandu.jpeg" alt="Kegiatan Posyandu">
+                    <div class="keterangan-foto">Kegiatan Posyandu & Kesehatan</div>
+                </div>
+                <div class="foto-item">
+                    <img src="dashat.jpeg" alt="Penyaluran Bantuan">
+                    <div class="keterangan-foto">Penyaluran Bantuan Sosial</div>
+                </div>
+                <div class="foto-item">
+                    <img src="PKK.jpeg" alt="Kegiatan PKK">
+                    <div class="keterangan-foto">Kegiatan PKK & Pemberdayaan Warga</div>
+                </div>
+                <div class="foto-item">
+                    <img src="PKK1.jpeg" alt="Kegiatan PKK">
+                    <div class="keterangan-foto">Kegiatan PKK — Kader & Masyarakat</div>
+                </div>
+            </div>
+        </div>
 
         <div class="card pusat" id="penilaian">
             <h2>⭐ Penilaian Layanan</h2>
@@ -732,9 +727,9 @@
                     const elemen = document.createElement('div');
                     elemen.className = 'acara-item';
                     elemen.innerHTML = `
-                        <strong>🔹 ${acara.namaHari}, ${acara.tanggalAngka} ${acara.namaBulan} ${acara.tahun}</strong><br>
-                        ${acara.namaAcara} — ${acara.tempat}
-                        <button class="tombol merah hapus" onclick="hapusAcara(${indeks})">Hapus</button>
+                        <strong>🔹 ${acara.namaAcara}</strong><br>
+                        🕐 ${acara.tempat}
+                        <button class="tombol merah kecil hapus" onclick="hapusAcara(${indeks})">Hapus</button>
                     `;
                     wadah.appendChild(elemen);
                     adaYangDitampilkan = true;
@@ -756,18 +751,8 @@
                 return;
             }
 
-            const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-            const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
-                          "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-            
-            const tglObj = new Date(tanggal + 'T00:00:00');
-            
             daftarAcara.push({
                 tanggal: tanggal,
-                namaHari: hari[tglObj.getDay()],
-                tanggalAngka: tglObj.getDate(),
-                namaBulan: bulan[tglObj.getMonth()],
-                tahun: tglObj.getFullYear(),
                 namaAcara: namaAcara,
                 tempat: tempat
             });
@@ -815,9 +800,7 @@
             document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
         }
 
-        // === MULAI ===
-        tampilkanSemuaAcara();
-    // === EDIT INFORMASI LAYANAN ===
+        // === EDIT INFORMASI LAYANAN ===
         function muatDataLayanan() {
             const simpanan = JSON.parse(localStorage.getItem('dataLayanan')) || {};
             if (simpanan.d1) document.getElementById('deskripsi-1').textContent = simpanan.d1;
@@ -833,7 +816,8 @@
             document.getElementById('input-layanan-4').value = simpanan.d4 || document.getElementById('deskripsi-4').textContent;
             document.getElementById('input-layanan-5').value = simpanan.d5 || document.getElementById('deskripsi-5').textContent;
             document.getElementById('input-layanan-6').value = simpanan.d6 || document.getElementById('deskripsi-6').textContent;
-     
+        }
+
         function simpanLayanan() {
             const d1 = document.getElementById('input-layanan-1').value;
             const d2 = document.getElementById('input-layanan-2').value;
@@ -843,7 +827,9 @@
             const d6 = document.getElementById('input-layanan-6').value;
 
             if (!d1 || !d2 || !d3 || !d4 || !d5 || !d6) {
-                alert('Harap lengkapi semua keterangan!');
+                alert('Har
+
+apakan keterangan lengkap!');
                 return;
             }
 
@@ -859,35 +845,37 @@
             tutupEditLayanan();
             alert('✅ Informasi layanan berhasil diperbarui!');
         }
-      // ✅ Pertama: semua fungsi di atas
-function kosongkanFormLayanan() {
-    if (confirm('Yakin ingin mengosongkan semua isian?')) {
-        document.getElementById('input-layanan-1').value = '';
-        document.getElementById('input-layanan-2').value = '';
-        document.getElementById('input-layanan-3').value = '';
-        document.getElementById('input-layanan-4').value = '';
-        document.getElementById('input-layanan-5').value = '';
-        document.getElementById('input-layanan-6').value = '';
-    }
-}
 
-// === KATA SANDI UNTUK EDIT INFORMASI ===
-const KATA_SANDI_LAYANAN = 'cigereleng2026';
+        function kosongkanFormLayanan() {
+            if (confirm('Yakin ingin mengosongkan semua isian?')) {
+                document.getElementById('input-layanan-1').value = '';
+                document.getElementById('input-layanan-2').value = '';
+                document.getElementById('input-layanan-3').value = '';
+                document.getElementById('input-layanan-4').value = '';
+                document.getElementById('input-layanan-5').value = '';
+                document.getElementById('input-layanan-6').value = '';
+            }
+        }
 
-function cekSandiLayanan() {
-    const sandi = prompt('Masukkan kata sandi untuk mengedit:');
-    if (sandi === KATA_SANDI_LAYANAN) {
+        function tutupEditLayanan() {
+            document.getElementById('form-edit-layanan').classList.add('sembunyi');
+        }
+
+        const KATA_SANDI_LAYANAN = 'cigereleng2026';
+
+        function cekSandiLayanan() {
+            const sandi = prompt('Masukkan kata sandi untuk mengedit:');
+            if (sandi === KATA_SANDI_LAYANAN) {
+                muatDataLayanan();
+                document.getElementById('form-edit-layanan').classList.remove('sembunyi');
+            } else if (sandi !== null) {
+                alert('❌ Kata sandi salah! Silakan coba lagi.');
+            }
+        }
+
+        // === JALANKAN SAAT HALAMAN DIBUKA ===
+        tampilkanSemuaAcara();
         muatDataLayanan();
-        document.getElementById('form-edit-layanan').classList.remove('sembunyi');
-    } else if (sandi !== null) {
-        alert('❌ Kata sandi salah! Silakan coba lagi.');
-    }
-}
-
-// ✅ Baru di bawah ini: jalankan perintah
-tampilkanSemuaAcara();
-muatDataLayanan();
-
-</script>
+    </script>
 </body>
 </html>
