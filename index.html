@@ -816,7 +816,7 @@
 
         // === MULAI ===
         tampilkanSemuaAcara();
-    </script>        // === EDIT INFORMASI LAYANAN ===
+    // === EDIT INFORMASI LAYANAN ===
         function muatDataLayanan() {
             const simpanan = JSON.parse(localStorage.getItem('dataLayanan')) || {};
             if (simpanan.d1) document.getElementById('deskripsi-1').textContent = simpanan.d1;
@@ -870,6 +870,6 @@
         }
 tampilkanSemuaAcara();
 muatDataLayanan();
-
+    </script> 
 </body>
 </html>
