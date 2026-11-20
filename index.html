@@ -816,6 +816,58 @@
 
         // === MULAI ===
         tampilkanSemuaAcara();
-    </script>
+    </script>        // === EDIT INFORMASI LAYANAN ===
+        function muatDataLayanan() {
+            const simpanan = JSON.parse(localStorage.getItem('dataLayanan')) || {};
+            if (simpanan.d1) document.getElementById('deskripsi-1').textContent = simpanan.d1;
+            if (simpanan.d2) document.getElementById('deskripsi-2').textContent = simpanan.d2;
+            if (simpanan.d3) document.getElementById('deskripsi-3').textContent = simpanan.d3;
+            if (simpanan.d4) document.getElementById('deskripsi-4').textContent = simpanan.d4;
+            if (simpanan.d5) document.getElementById('deskripsi-5').textContent = simpanan.d5;
+            if (simpanan.d6) document.getElementById('deskripsi-6').textContent = simpanan.d6;
+            
+            document.getElementById('input-layanan-1').value = simpanan.d1 || document.getElementById('deskripsi-1').textContent;
+            document.getElementById('input-layanan-2').value = simpanan.d2 || document.getElementById('deskripsi-2').textContent;
+            document.getElementById('input-layanan-3').value = simpanan.d3 || document.getElementById('deskripsi-3').textContent;
+            document.getElementById('input-layanan-4').value = simpanan.d4 || document.getElementById('deskripsi-4').textContent;
+            document.getElementById('input-layanan-5').value = simpanan.d5 || document.getElementById('deskripsi-5').textContent;
+            document.getElementById('input-layanan-6').value = simpanan.d6 || document.getElementById('deskripsi-6').textContent;
+        }
+
+        function toggleEditLayanan() {
+            muatDataLayanan();
+            document.getElementById('form-edit-layanan').classList.toggle('sembunyi');
+        }
+
+        function tutupEditLayanan() {
+            document.getElementById('form-edit-layanan').classList.add('sembunyi');
+        }
+
+        function simpanLayanan() {
+            const d1 = document.getElementById('input-layanan-1').value;
+            const d2 = document.getElementById('input-layanan-2').value;
+            const d3 = document.getElementById('input-layanan-3').value;
+            const d4 = document.getElementById('input-layanan-4').value;
+            const d5 = document.getElementById('input-layanan-5').value;
+            const d6 = document.getElementById('input-layanan-6').value;
+
+            if (!d1 || !d2 || !d3 || !d4 || !d5 || !d6) {
+                alert('Harap lengkapi semua keterangan!');
+                return;
+            }
+
+            localStorage.setItem('dataLayanan', JSON.stringify({d1,d2,d3,d4,d5,d6}));
+            
+            document.getElementById('deskripsi-1').textContent = d1;
+            document.getElementById('deskripsi-2').textContent = d2;
+            document.getElementById('deskripsi-3').textContent = d3;
+            document.getElementById('deskripsi-4').textContent = d4;
+            document.getElementById('deskripsi-5').textContent = d5;
+            document.getElementById('deskripsi-6').textContent = d6;
+            
+            tutupEditLayanan();
+            alert('✅ Informasi layanan berhasil diperbarui!');
+        }
+
 </body>
 </html>
