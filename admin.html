@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranah Admin — Kelurahan Cigereleng</title>
+    <title>Profil Kesejahteraan Sosial Kelurahan Cigereleng</title>
     <style>
         * {
             margin: 0;
@@ -11,172 +11,462 @@
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
+
         body {
-            background-color: #f0f4f8;
-            padding: 30px 20px;
+            background-color: #f0f8ff;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #333;
             line-height: 1.6;
         }
+
+        nav {
+            background-color: rgba(30, 64, 100, 0.95);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            font-size: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #2c5aa0;
+        }
+
+        header {
+            background-color: rgba(44, 90, 160, 0.92);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            background-color: white;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .header-text h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .header-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .jam-tanggal {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #2c5aa0;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
         .card {
-            background: white;
-            max-width: 550px;
-            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c5aa0;
-            text-align: center;
             margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #2c5aa0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e7f0;
+            padding-bottom: 10px;
+            text-align: center;
             font-size: 22px;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 6px;
-            color: #333;
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 15px;
-        }
-        button {
-            background-color: #2c5aa0;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #1a3a66;
-        }
-        .hasil {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f4f7fc;
-            border-radius: 6px;
-            border-left: 4px solid #2c5aa0;
-            display: none;
-        }
-        textarea#kode-hasil {
-            background-color: #f9f9f9;
-            font-family: monospace;
-            font-size: 13px;
-            resize: vertical;
-            min-height: 100px;
-        }
-        .kembali {
-            display: inline-block;
-            margin-top: 20px;
+
+        h3 {
             color: #2c5aa0;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            background-color: rgba(34, 34, 34, 0.95);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #888;
             text-decoration: none;
         }
-        .kembali:hover {
-            text-decoration: underline;
+
+        .tombol {
+            display: inline-block;
+            background-color: #2c5aa0;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
-        .kunci {
+
+        .tombol:hover {
+            background-color: #1a3a66;
+        }
+
+        .tombol.hijau {
+            background-color: #28a745;
+        }
+
+        .tombol.hijau:hover {
+            background-color: #218838;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 10px 0;
+        }
+
+        .icon {
+            color: #2c5aa0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .pusat {
             text-align: center;
-            padding-top: 60px;
+        }
+
+        .galeri-foto {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .foto-item {
+            text-align: center;
+            max-width: 230px;
+            transition: transform 0.3s ease;
+        }
+
+        .foto-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .foto-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+
+        .keterangan-foto {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #444;
+            padding: 10px;
+            background-color: rgba(44, 90, 160, 0.05);
+            border-radius: 6px;
+        }
+
+        .tombol-penilaian {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tombol-penilaian button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #btn-suka {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #btn-suka:hover {
+            background-color: #218838;
+        }
+
+        #btn-tidak-suka {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #btn-tidak-suka:hover {
+            background-color: #c82333;
+        }
+
+        .tombol-penilaian button span {
+            background-color: rgba(255,255,255,0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-left: 8px;
+        }
+
+        .profil-pimpinan {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .profil-item {
+            text-align: center;
+            max-width: 220px;
+        }
+
+        .profil-item img {
+            width: 180px;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+        }
+
+        .profil-item h3 {
+            color: #2c5aa0;
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .profil-item p {
+            font-size: 15px;
+            color: #555;
+        }
+
+        .hukum-item {
+            margin-bottom: 10px;
+        }
+
+        .hukum-judul {
+            cursor: pointer;
+            padding: 10px;
+            background: #eaf1fb;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .hukum-isi {
+            display: none;
+            padding: 12px;
+            background: #f4f7fc;
+            border-radius: 0 0 6px 6px;
+            margin-top: 2px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        #acara-hari-ini {
+            background: #fff9e6;
+            border: 2px solid #f0c040;
+            display: none;
+        }
+
+        .acara-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #f0c040;
+        }
+
+        .acara-item:last-child {
+            border-bottom: none;
         }
     </style>
 </head>
 <body>
 
-    <div id="halaman-kunci" class="kunci card">
-        <h1>🔐 Masuk Ranah Admin</h1>
-        <div class="form-group">
-            <label>Masukkan Kata Sandi</label>
-            <input type="password" id="kata-sandi" placeholder="Ketik kata sandi...">
-        </div>
-        <button onclick="cekSandi()">Buka Halaman Admin</button>
-    </div>
+    <nav>
+        <ul>
+            <li><a href="#beranda">🏠 Beranda</a></li>
+            <li><a href="#profil">👤 Lurah & Seksi Kesos</a></li>
+            <li><a href="#tentang">ℹ️ Tentang Kami</a></li>
+            <li><a href="#layanan">📋 Layanan</a></li>
+            <li><a href="#formulir">✍️ Ajuan Warga</a></li>
+            <li><a href="#galeri">📸 Galeri</a></li>
+            <li><a href="#penilaian">⭐ Penilaian</a></li>
+            <li><a href="#kontak">📞 Kontak</a></li>
+        </ul>
+    </nav>
 
-    <div id="halaman-admin" class="card" style="display: none;">
-        <h1>📅 Pengelola Acara</h1>
-        
-        <div class="form-group">
-            <label>Tanggal Acara</label>
-            <input type="date" id="tgl-acara">
+    <header id="beranda">
+        <img src="logo-pemkot-bandung.png" alt="Logo Pemerintah Kota Bandung" class="logo">
+        <div class="header-text">
+            <h1>Profil Kesejahteraan Sosial Kelurahan Cigereleng</h1>
+            <p>Kecamatan Regol — Kota Bandung</p>
+            <p style="font-size: 13px; opacity: 0.95; margin-top: 4px;">Pengelolaan informasi dan pelayanan bidang kesejahteraan sosial Kelurahan Cigereleng.</p>
         </div>
-        <div class="form-group">
-            <label>Nama Acara</label>
-            <input type="text" id="nama-acara" placeholder="Contoh: Rapat Koordinasi">
-        </div>
-        <div class="form-group">
-            <label>Jam & Tempat</label>
-            <input type="text" id="waktu-tempat" placeholder="Contoh: Pukul 09.00 WIB — Balai RW 03">
-        </div>
-        
-        <button onclick="buatKodeAcara()">✨ Buat Kode Acara</button>
-        
-        <div class="hasil" id="kotak-hasil">
-            <label>📋 Salin kode di bawah ini, lalu tempel ke bagian &lt;div id="daftar-acara"&gt; di file index.html:</label>
-            <textarea id="kode-hasil" readonly onclick="this.select()"></textarea>
-            <button onclick="salinKeClipboard()" style="background-color:#28a745; width:auto; padding:8px 20px; font-size:14px;">📋 Salin Kode</button>
+    </header>
+
+    <div class="jam-tanggal" id="tanggal-jam"></div>
+
+    <main>
+        <div class="card" id="acara-hari-ini">
+            <h3 style="color:#b8860b; margin-bottom:15px; text-align:center;">📢 Acara Hari Ini</h3>
+            <div id="daftar-acara">
+                <!-- Acara dari halaman Admin akan ditempel di sini -->
+            </div>
+            <p style="text-align:center; font-size:13px; color:#888; margin-top:10px;">Acara otomatis hilang setelah hari berlalu</p>
         </div>
 
-        <a href="index.html" class="kembali">← Kembali ke Halaman Utama</a>
-    </div>
+        <div class="card" id="profil">
+            <h2>👤 Lurah & Seksi Kesejahteraan Sosial</h2>
+            <div class="profil-pimpinan">
+                <div class="profil-item">
+                    <img src="foto-lurah.jpeg" alt="Foto Lurah">
+                    <h3>Dees Budi Angga Sumadiharja, S.IP.</h3>
+                    <p>Lurah Cigereleng</p>
+                </div>
+                <div class="profil-item">
+                    <img src="foto-saya.jpeg" alt="Foto Saya">
+                    <h3>Dadan Kurnia, S.AP</h3>
+                    <p>Kasi Kesejahteraan Sosial</p>
+                </div>
+            </div>
+        </div>
 
-    <script>
-        // Ganti kata sandi sesuai keinginan Bapak ya!
-        const KATA_SANDI = 'cigereleng2026';
-
-        function cekSandi() {
-            const input = document.getElementById('kata-sandi').value;
-            if (input === KATA_SANDI) {
-                document.getElementById('halaman-kunci').style.display = 'none';
-                document.getElementById('halaman-admin').style.display = 'block';
-            } else {
-                alert('Kata sandi salah! Coba lagi ya 😊');
-            }
-        }
-
-        function buatKodeAcara() {
-            const tgl = document.getElementById('tgl-acara').value;
-            const nama = document.getElementById('nama-acara').value;
-            const lokasi = document.getElementById('waktu-tempat').value;
+        <div class="card" id="tentang">
+            <h2>ℹ️ Tentang Kami</h2>
+            <p>Selamat datang di halaman resmi Seksi Kesejahteraan Sosial Kelurahan Cigereleng, Kecamatan Regol, Kota Bandung.</p>
+            <p>Halaman ini disusun untuk memberikan informasi yang transparan, akurat, dan mudah diakses terkait program, kegiatan, serta pelayanan kesejahteraan sosial bagi masyarakat Kelurahan Cigereleng.</p>
+            <br>
+            <h3>📜 Dasar Hukum</h3>
             
-            if (!tgl || !nama || !lokasi) {
-                alert('Lengkapi semua data dulu ya sayang! 😊');
-                return;
-            }
-            
-            const hariNama = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-            const bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
-                               'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-            const d = new Date(tgl + 'T00:00:00');
-            const namaHari = hariNama[d.getDay()];
-            const tglAngka = d.getDate();
-            const namaBulan = bulanNama[d.getMonth()];
-            const thn = d.getFullYear();
-            
-            const kode = `<div class="acara-item" data-tanggal="${tgl}">
-    <strong>🔹 ${namaHari}, ${tglAngka} ${namaBulan} ${thn}</strong><br>
-    ${nama} — ${lokasi}
-</div>`;
-            
-            document.getElementById('kode-hasil').value = kode;
-            document.getElementById('kotak-hasil').style.display = 'block';
-        }
+            <div class="hukum-item">
+                <div class="hukum-judul" onclick="toggleHukum('hukum1')">
+                  ✅ Perda Kota Bandung No. 14 Tahun 2007 ▼
+                </div>
+                <div id="hukum1" class="hukum-isi">
+                  Tentang Pembentukan dan Susunan Organisasi Kecamatan dan Kelurahan di Lingkungan Pemerintah Kota Bandung.<br>
+                  Kelurahan merupakan wilayah kerja Lurah sebagai perangkat daerah dalam wilayah Kecamatan, berada di bawah dan bertanggung jawab kepada Wali Kota melalui Camat.
+                </div>
+            </div>
 
-        function salinKeClipboard() {
-            const kode = document.getElementById('kode-hasil');
-            kode.select();
-            document.execCommand('copy');
-            alert('✅ Berhasil disalin! Sekarang tempel ke file index.html di bagian daftar-acara ya sayang ❤️');
-        }
-    </script>
-</body>
-</html>
+            <div class="hukum-item">
+                <div class="hukum-judul" onclick="toggleHukum('hukum2')">
+                  ✅ Perwali Bandung No. 1407 Tahun 2016 ▼
+                </div>
+                <div id="hukum2" class="hukum-isi">
+                  Tentang Kedudukan, Susunan Organisasi, Tugas dan Fungsi serta Tata Kerja Kecamatan dan Kelurahan.<br>
+                  Tugas pokok Lurah: melaksanakan pemerintahan, pemberdayaan masyarakat, pelayanan masyarakat, menjaga ketenteraman dan ketertiban umum, serta memelihara sarana prasarana.
+                </div>
+            </div>
+
+            <div class="hukum-item">
+                <div class="hukum-judul" onclick="toggleHukum('hukum3')">
+                  ✅ Perwali Bandung No. 11 Tahun 2024 ▼
+                </div>
+                <div id="hukum3" class="hukum-isi">
+                  Tentang Lembaga Kemasyarakatan Kelurahan di Kota Bandung.<br>
+                  Lurah adalah pemimpin penyelenggaraan pemerintahan di wilayah Kelurahan yang dalam pelaksanaan tugasnya memperoleh pelimpahan kewenangan dari Wali Kota.
+                </div>
+            </div>
+
+            <br>
+            <p style="font-style:italic; color:#555;">Kami berkomitmen untuk menyelenggarakan pelayanan yang transparan, akuntabel, dan responsif terhadap kebutuhan masyarakat Kelurahan Cigereleng.</p>
+        </div>
+
+        <div class="card" id="layanan">
+            <h2>📋 Layanan Kami</h2>
+            <p>✅ Pendataan Warga Kurang Mampu</p>
+            <p>✅ Bantuan Sosial</p>
+            <p>✅ Layanan Pengaduan Sosial</p>
+            <p>✅ Informasi Program Kesejahteraan</p>
+            <p>✅ Surat Pengantar & Permohonan</p>
+        </div>
+
+        <div class="card pusat" id="formulir">
+            <h2>✍️ Ajukan Permohonan / Lapor</h2>
+            <p>Silakan buka formulir di bawah ini untuk mengirimkan permohonan atau laporan.</p>
+            <p>Data yang Bapak/Ibu kirim akan langsung diterima oleh petugas kelurahan.</p>
+            <p><em>✅ Setelah selesai, akan muncul pesan konfirmasi. Terima kasih atas partisipasi Bapak/Ibu!</em></p>
+            <br>
+            <a href="https://forms.gle/X6HBawhxexjH4pTm9" target="_blank" class="tombol hijau">📝 Buka Formulir Warga</a>
+        </div>
+
+        <div class="card" id="galeri">
+            <h2>📸 Galeri Kegiatan Kesos</h2>
+            <p style="text-align:center; color:#666; margin-bottom:20px;">Kumpulan kegiatan Seksi Kesejahteraan Sosial Kelurahan Cigereleng</p>
+            <div class="galeri-foto">
+                <div class="foto-item">
+                    <img src="posyandu.jpeg" alt="Kegiatan Posyandu" loading="lazy">
+                    <div class="keterangan-foto">Kegiatan Posyandu Cigereleng</div>
+                </div>
+                <div class="foto-item">
+                    <img src="PKK.jpeg" alt="Kegiatan PKK" loading="lazy">
+                    <div class="keterangan-foto">Kegiatan PKK</div>
+                </div>
+                <div class="foto-item">
+                    <img src="PKK1.jpeg" alt="Kegiatan PKK — Lanjutan" loading="lazy">
+                    <div class="keterangan-foto">Kegiatan PKK — Lanjutan</div>
+                </div>
+                <div class="foto-item">
+                    <img src="dashat.jpeg" alt="Monev Dashat" loading="lazy">
+                    <div class="keterangan-foto">Monev Dashat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card pusat" id="penilaian">
+            <h2>⭐ Penilaian Pengunjung</h2>
+            <p>Bagaimana menurut Bapak/Ibu tentang halaman ini?</p>
+            <div class="tombol-penilaian">
+                <button onclick="tambahSuka()" id="btn-suka">👍 Suka <span id="jumlah-suka">0</span></button>
+                <button onclick="tambahTidakSuka()" id="btn-tidak-suka">👎 Tidak Suka <span id="jumlah-tidak-suka">0</span></button>
+            </div>
+            <p style="margin-top: 20px; font-size: 14px; color: #666;">Terima kasih atas masukan Bapak/Ibu! 🙏</p>
+        </div
