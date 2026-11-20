@@ -117,6 +117,12 @@
             font-size: 22px;
         }
 
+        h3 {
+            color: #2c5aa0;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
         footer {
             background-color: rgba(34, 34, 34, 0.95);
             color: white;
@@ -279,6 +285,28 @@
             font-size: 15px;
             color: #555;
         }
+
+        .hukum-item {
+            margin-bottom: 10px;
+        }
+
+        .hukum-judul {
+            cursor: pointer;
+            padding: 10px;
+            background: #eaf1fb;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .hukum-isi {
+            display: none;
+            padding: 12px;
+            background: #f4f7fc;
+            border-radius: 0 0 6px 6px;
+            margin-top: 2px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
     </style>
 </head>
 <body>
@@ -324,13 +352,48 @@
         </div>
 
         <div class="card" id="tentang">
-            <h2>Tentang Kami</h2>
-            <p>Selamat datang di halaman resmi Kesejahteraan Sosial Kelurahan Cigereleng. Halaman ini bertujuan untuk memberikan informasi terkait program, kegiatan, dan pelayanan kesejahteraan sosial bagi masyarakat Kelurahan Cigereleng.</p>
-            <p>Kami berkomitmen untuk melayani dan mendukung kesejahteraan seluruh warga masyarakat kami.</p>
+            <h2>ℹ️ Tentang Kami</h2>
+            <p>Selamat datang di halaman resmi Seksi Kesejahteraan Sosial Kelurahan Cigereleng, Kecamatan Regol, Kota Bandung.</p>
+            <p>Halaman ini disusun untuk memberikan informasi yang transparan, akurat, dan mudah diakses terkait program, kegiatan, serta pelayanan kesejahteraan sosial bagi masyarakat Kelurahan Cigereleng.</p>
+            <br>
+            <h3>📜 Dasar Hukum</h3>
+            
+            <div class="hukum-item">
+                <div class="hukum-judul" onclick="toggleHukum('hukum1')">
+                  ✅ Perda Kota Bandung No. 14 Tahun 2007 ▼
+                </div>
+                <div id="hukum1" class="hukum-isi">
+                  Tentang Pembentukan dan Susunan Organisasi Kecamatan dan Kelurahan di Lingkungan Pemerintah Kota Bandung.<br>
+                  Kelurahan merupakan wilayah kerja Lurah sebagai perangkat daerah dalam wilayah Kecamatan, berada di bawah dan bertanggung jawab kepada Wali Kota melalui Camat.
+                </div>
+            </div>
+
+            <div class="hukum-item">
+                <div class="hukum-judul" onclick="toggleHukum('hukum2')">
+                  ✅ Perwali Bandung No. 1407 Tahun 2016 ▼
+                </div>
+                <div id="hukum2" class="hukum-isi">
+                  Tentang Kedudukan, Susunan Organisasi, Tugas dan Fungsi serta Tata Kerja Kecamatan dan Kelurahan.<br>
+                  Tugas pokok Lurah: melaksanakan pemerintahan, pemberdayaan masyarakat, pelayanan masyarakat, menjaga ketenteraman dan ketertiban umum, serta memelihara sarana prasarana.
+                </div>
+            </div>
+
+            <div class="hukum-item">
+                <div class="hukum-judul" onclick="toggleHukum('hukum3')">
+                  ✅ Perwali Bandung No. 11 Tahun 2024 ▼
+                </div>
+                <div id="hukum3" class="hukum-isi">
+                  Tentang Lembaga Kemasyarakatan Kelurahan di Kota Bandung.<br>
+                  Lurah adalah pemimpin penyelenggaraan pemerintahan di wilayah Kelurahan yang dalam pelaksanaan tugasnya memperoleh pelimpahan kewenangan dari Wali Kota.
+                </div>
+            </div>
+
+            <br>
+            <p style="font-style:italic; color:#555;">Kami berkomitmen untuk menyelenggarakan pelayanan yang transparan, akuntabel, dan responsif terhadap kebutuhan masyarakat Kelurahan Cigereleng.</p>
         </div>
 
         <div class="card" id="layanan">
-            <h2>Layanan Kami</h2>
+            <h2>📋 Layanan Kami</h2>
             <p>✅ Pendataan Warga Kurang Mampu</p>
             <p>✅ Bantuan Sosial</p>
             <p>✅ Layanan Pengaduan Sosial</p>
@@ -377,7 +440,7 @@
         </div>
 
         <div class="card" id="kontak">
-            <h2>Informasi Kontak</h2>
+            <h2>📞 Informasi Kontak</h2>
             <div class="info-row">
                 <span class="icon">📍</span>
                 <span>Alamat: Jl. Kembar Sari Indah No. 29, Cigereleng, Kec. Regol, Kota Bandung</span>
@@ -408,43 +471,4 @@
             const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
                           "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
             
-            const sekarang = new Date();
-            const namaHari = hari[sekarang.getDay()];
-            const tgl = sekarang.getDate();
-            const namaBulan = bulan[sekarang.getMonth()];
-            const tahun = sekarang.getFullYear();
-            const jam = sekarang.getHours().toString().padStart(2, '0');
-            const menit = sekarang.getMinutes().toString().padStart(2, '0');
-            const detik = sekarang.getSeconds().toString().padStart(2, '0');
-            
-            document.getElementById("tanggal-jam").innerHTML = 
-                `${namaHari}, ${tgl} ${namaBulan} ${tahun} — Pukul ${jam}:${menit}:${detik} WIB`;
-        }
-        
-        tampilTanggalJam();
-        setInterval(tampilTanggalJam, 1000);
-
-        let suka = localStorage.getItem('suka') ? parseInt(localStorage.getItem('suka')) : 0;
-        let tidakSuka = localStorage.getItem('tidakSuka') ? parseInt(localStorage.getItem('tidakSuka')) : 0;
-        let sudahPilih = localStorage.getItem('sudahPilih');
-
-        document.getElementById('jumlah-suka').textContent = suka;
-        document.getElementById('jumlah-tidak-suka').textContent = tidakSuka;
-
-        function tambahSuka() {
-            if (sudahPilih) {
-                alert('Terima kasih! Bapak/Ibu sudah memberikan penilaian ya 😊');
-                return;
-            }
-            suka++;
-            localStorage.setItem('suka', suka);
-            localStorage.setItem('sudahPilih', 'suka');
-            sudahPilih = 'suka';
-            document.getElementById('jumlah-suka').textContent = suka;
-            document.getElementById('btn-suka').style.opacity = '0.7';
-            alert('Terima kasih atas penilaian positif Bapak/Ibu! ❤️');
-        }
-
-        function tambahTidakSuka() {
-            if (sudahPilih) {
-                alert('Terima kasih! Bapak/Ibu sudah memberikan penilaian
+           
