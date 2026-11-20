@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranah Admin — Kelurahan Cigereleng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f4f8;
+            padding: 30px 20px;
+            line-height: 1.6;
+        }
+        .card {
+            background: white;
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5aa0;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+        button {
+            background-color: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #1a3a66;
+        }
+        .hasil {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f4f7fc;
+            border-radius: 6px;
+            border-left: 4px solid #2c5aa0;
+            display: none;
+        }
+        textarea#kode-hasil {
+            background-color: #f9f9f9;
+            font-family: monospace;
+            font-size: 13px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        .kembali {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2c5aa0;
+            text-decoration: none;
+        }
+        .kembali:hover {
+            text-decoration: underline;
+        }
+        .kunci {
+            text-align: center;
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="halaman-kunci" class="kunci card">
+        <h1>🔐 Masuk Ranah Admin</h1>
+        <div class="form-group">
+            <label>Masukkan Kata Sandi</label>
+            <input type="password" id="kata-sandi" placeholder="Ketik kata sandi...">
+        </div>
+        <button onclick="cekSandi()">Buka Halaman Admin</button>
+    </div>
+
+    <div id="halaman-admin" class="card" style="display: none;">
+        <h1>📅 Pengelola Acara</h1>
+        
+        <div class="form-group">
+            <label>Tanggal Acara</label>
+            <input type="date" id="tgl-acara">
+        </div>
+        <div class="form-group">
+            <label>Nama Acara</label>
+            <input type="text" id="nama-acara" placeholder="Contoh: Rapat Koordinasi">
+        </div>
+        <div class="form-group">
+            <label>Jam & Tempat</label>
+            <input type="text" id="waktu-tempat" placeholder="Contoh: Pukul 09.00 WIB — Balai RW 03">
+        </div>
+        
+        <button onclick="buatKodeAcara()">✨ Buat Kode Acara</button>
+        
+        <div class="hasil" id="kotak-hasil">
+            <label>📋 Salin kode di bawah ini, lalu tempel ke bagian &lt;div id="daftar-acara"&gt; di file index.html:</label>
+            <textarea id="kode-hasil" readonly onclick="this.select()"></textarea>
+            <button onclick="salinKeClipboard()" style="background-color:#28a745; width:auto; padding:8px 20px; font-size:14px;">📋 Salin Kode</button>
+        </div>
+
+        <a href="index.html" class="kembali">← Kembali ke Halaman Utama</a>
+    </div>
+
+    <script>
+        // Ganti kata sandi sesuai keinginan Bapak ya!
+        const KATA_SANDI = 'cigereleng2026';
+
+        function cekSandi() {
+            const input = document.getElementById('kata-sandi').value;
+            if (input === KATA_SANDI) {
+                document.getElementById('halaman-kunci').style.display = 'none';
+                document.getElementById('halaman-admin').style.display = 'block';
+            } else {
+                alert('Kata sandi salah! Coba lagi ya 😊');
+            }
+        }
+
+        function buatKodeAcara() {
+            const tgl = document.getElementById('tgl-acara').value;
+            const nama = document.getElementById('nama-acara').value;
+            const lokasi = document.getElementById('waktu-tempat').value;
+            
+            if (!tgl || !nama || !lokasi) {
+                alert('Lengkapi semua data dulu ya sayang! 😊');
+                return;
+            }
+            
+            const hariNama = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const bulanNama = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+                               'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            const d = new Date(tgl + 'T00:00:00');
+            const namaHari = hariNama[d.getDay()];
+            const tglAngka = d.getDate();
+            const namaBulan = bulanNama[d.getMonth()];
+            const thn = d.getFullYear();
+            
+            const kode = `<div class="acara-item" data-tanggal="${tgl}">
+    <strong>🔹 ${namaHari}, ${tglAngka} ${namaBulan} ${thn}</strong><br>
+    ${nama} — ${lokasi}
+</div>`;
+            
+            document.getElementById('kode-hasil').value = kode;
+            document.getElementById('kotak-hasil').style.display = 'block';
+        }
+
+        function salinKeClipboard() {
+            const kode = document.getElementById('kode-hasil');
+            kode.select();
+            document.execCommand('copy');
+            alert('✅ Berhasil disalin! Sekarang tempel ke file index.html di bagian daftar-acara ya sayang ❤️');
+        }
+    </script>
+</body>
+</html>
