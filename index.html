@@ -827,11 +827,9 @@
             const d6 = document.getElementById('input-layanan-6').value;
 
             if (!d1 || !d2 || !d3 || !d4 || !d5 || !d6) {
-                alert('Har
-
-apakan keterangan lengkap!');
-                return;
-            }
+    alert('Harap lengkapi keterangan lengkap!');
+    return;
+}
 
             localStorage.setItem('dataLayanan', JSON.stringify({d1,d2,d3,d4,d5,d6}));
             
